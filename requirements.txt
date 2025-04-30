@@ -1,0 +1,9 @@
+click==8.1.8
+jira==3.8.0
+langchain==0.3.24
+langchain-anthropic==0.3.12
+langchain-community==0.3.23
+langchain-core==0.3.56
+langchain-google==0.1.1
+langchain-google-genai==2.1.4
+langchain-openai==0.3.14
