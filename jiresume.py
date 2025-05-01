@@ -18,7 +18,8 @@ based on the provided Jira tickets to be used on a resume.
 Instructions:
 
 Input: You will be provided with a potentially long list of Jira tickets.
-Each ticket includes a title and a description.
+Each ticket includes a title and a description.  The list will be in chronological
+order to make grouping tickets easier.
 
 Output: Produce a well-structured, concise summary highlighting key responsibilities,
 skills, and accomplishments.
@@ -99,7 +100,8 @@ def get_jira_issues(
 ) -> list[str]:
     """Fetch Jira issues assigned to the user"""
     jira = JIRA(server=jira_url, basic_auth=(jira_username, jira_api_key))
-    jql_query = f'assignee = "{jira_username}"'
+    sanitized_name = jira_username.replace('"', '\\"')
+    jql_query = f'assignee = "{sanitized_name}" ORDER BY updated ASC'
 
     chunk_size = 200  # 200 is under the 1000-item cap
     start_at = 0
